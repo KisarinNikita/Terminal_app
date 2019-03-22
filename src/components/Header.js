@@ -6,11 +6,14 @@ class Header extends Component {
         this.state = {}
     }
 
-
     render() {
         return (
             <header>
-
+                <div className=" container main-menu">
+                  <a href="/">Главная</a>
+                  <a href="/registration">Регистрация</a>
+                  <a href="/login">Авторизация</a>
+                </div>
             </header>
         );
     }

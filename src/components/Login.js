@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField";
+import AuthService from './AuthService';
 
-class RegistrationForm extends Component {
+class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,6 +13,7 @@ class RegistrationForm extends Component {
         this.changeName = this.changeName.bind(this);
         this.changePassword = this.changePassword.bind(this);
         this.sendRegistration = this.sendRegistration.bind(this);
+        this.Auth = new AuthService();
     }
 
     changeName(event) {
@@ -24,7 +26,15 @@ class RegistrationForm extends Component {
 
     sendRegistration() {
         if (this.validation()) {
-            alert('ГОТОВО!')
+
+          this.Auth.login(this.state.name, this.state.password)
+            .then(res =>{
+              console.log(res);
+              // this.props.history.replace('/');
+            })
+            .catch(err =>{
+              alert(err);
+            })
         }
 
     }
@@ -47,14 +57,16 @@ class RegistrationForm extends Component {
     render() {
 
         return (
-            <div className="registrationForm">
-                <label>Регистрация</label>
+            <div className="registration">
+                <h2 className="main-title">Вход</h2>
                 <TextField
                     label="Логин"
                     value={this.state.name}
                     onChange={this.changeName}
                     margin="normal"
                     variant="outlined"
+                    className="registration__input"
+
                 />
 
                 <TextField
@@ -65,9 +77,13 @@ class RegistrationForm extends Component {
                     autoComplete="current-password"
                     margin="normal"
                     variant="outlined"
+                    className="registration__input"
                 />
 
-                <Button variant="contained" color="primary" onClick={this.sendRegistration}>
+                <Button variant="contained"
+                        color="primary"
+                        onClick={this.sendRegistration}
+                        className="registration__button">
                     Зарегистрироваться
                 </Button>
             </div>
@@ -75,4 +91,4 @@ class RegistrationForm extends Component {
     }
 }
 
-export default RegistrationForm;
+export default LoginForm;

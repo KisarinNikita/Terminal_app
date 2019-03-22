@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import RegistrationForm from './RegistrationForm';
+// import AuthService from 'AuthService';
+// import withAuth from 'UserArea';
+// const Auth = new AuthService();
+
 import Header from './Header';
 
 class App extends Component {
-    render() {
-        return (
-            <>
-                <Header/>
-                <div className="content">
-                    <div className="container">
-                        <RegistrationForm/>
-                    </div>
-                </div>
 
-            </>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <Header/>
+      </div>
+    )
+  }
 }
 
 export default App;
+
