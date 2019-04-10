@@ -1,18 +1,13 @@
-import React from 'react';
-import { render } from 'react-dom';
-import ReactDOM from 'react-dom';
-import App from './components/app';
-import RegistrationForm from './components/Registration';
-import LoginForm from './components/Login';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import App from "./components/app";
+
 const rootEl = document.getElementById('app');
 
 ReactDOM.render(
-  <Router>
-    <Route path="/" component={App}/>
-    <Route path="/registration" component={RegistrationForm}/>
-    <Route path="/login" component={LoginForm}/>
-  </Router>,
-  rootEl);
-
-
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  rootEl
+);

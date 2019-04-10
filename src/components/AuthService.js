@@ -2,7 +2,7 @@ import decode from 'jwt-decode';
 export default class AuthService {
 
   constructor() {
-    this.domain = 'https://stocks-mocks.herokuapp.com/api/auth/signin';
+    this.domain = 'https://secret-hamlet-78538.herokuapp.com/auth/signin';
     this.fetch = this.fetch.bind(this);
     this.login = this.login.bind(this);
     this.getProfile = this.getProfile.bind(this)

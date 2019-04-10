@@ -31,21 +31,20 @@ class RegistrationForm extends Component {
             password: this.state.password
           };
 
-          axios.post(`https://stocks-mocks.herokuapp.com/api/auth/signup`,
+          axios.post(`https://secret-hamlet-78538.herokuapp.com/auth/signup`,
             JSON.stringify(data),
             { headers: {
               'Content-Type': 'application/json',
             }})
             .then(res => {
-
                 if (!res.data.code) {
                     alert('Вы успешно зарегистрированы! Ваш accessToken - ' + res.data.accessToken);
                     window.location.href = "/login";
+                  console.log(res.data);
                 } else {
-                    alert('Ошибка:' + res.data.message);
+                    alert('Ошибка:' + res.message);
                     location.reload();
                 }
-
             }).catch(err =>{
                 alert(err);
           })
