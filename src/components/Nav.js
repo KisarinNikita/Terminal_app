@@ -11,7 +11,6 @@ class Nav extends Component {
         <Logout/>
       </>
     );
-    console.log(this.props.name);
 
     const notAuthLinks = (
       <>

@@ -16,7 +16,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <Provider store={store}>
         <React.Fragment>
