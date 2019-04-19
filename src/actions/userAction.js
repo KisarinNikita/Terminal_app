@@ -1,47 +1,30 @@
 import axios from "axios";
 
-export const getInfo = () => (dispatch, getState) => {
+export const getUserStocks = () => (dispatch, getState) => {
   const token = getState().auth.token;
-  axios
-    .get(`https://stocks-mocks.herokuapp.com/api/account/info`, {
-      headers: {
-        Authorization: token
-      }
-    })
-    .then(res => {
+  axios.get(`https://secret-hamlet-78538.herokuapp.com/account/info`,
+      { headers: { Authorization: token } }
+    ).then(res => {
       dispatch({
-        type: "GET_INFO",
+        type: "GET_USER_STOCKS",
         payload: res.data
       });
-    })
-    .catch(err => {
-      console.log('ошибка');
-      dispatch({ type: "GET_INFO_FAIL" });
+    }).catch(err => {
+      dispatch({ type: "GET_USER_STOCKS_FAIL" });
     });
 };
 
+export const getAllStocks = () => (dispatch, getState) => {
+  const token = getState().auth.token;
+  axios.get(`https://stocks-mocks.herokuapp.com/api/stocks`,
+    { headers: { Authorization: token } })
+    .then(res => {
+      dispatch({
+        type: "GET_ALL_STOCKS",
+        payload: res.data
+      });
+    }).catch(err => {
+    dispatch({ type: "GET_USER_STOCKS_FAIL" });
+  });
+};
 
-// export const getStocks = () => (dispatch, getState) => {
-//   // Headers
-//
-//   const token = getState().auth.token;
-//   axios
-//     .get(`${proxy}https://stockstore.herokuapp.com/api/stocks?search=${1}`, {
-//       headers: {
-//         Authorization: token
-//       }
-//     })
-//     .then(res => {
-//       console.log(res.data);
-//
-//       dispatch({
-//         type: GET_STOCK_LIST,
-//         payload: res.data
-//       });
-//     })
-//     .catch(err => {
-//       console.log('cant get stock list');
-//       dispatch({ type: GET_STOCK_LIST_FAILED });
-//       dispatch(returnErrors(err.response.data, err.response.status));
-//     });
-// };

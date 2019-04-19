@@ -16,6 +16,7 @@ class App extends Component {
   }
 
   render() {
+    let isAuth = store.getState().auth.isAuthenticated;
     return (
       <Provider store={store}>
         <React.Fragment>
@@ -25,7 +26,10 @@ class App extends Component {
               <Route path="/home" component={Home} />
               <Route path="/login" component={Auth} />
               <Route path="/registration" component={Auth} />
-              <Redirect from="/" exact to="/home" />
+              { isAuth ?
+                <Redirect from="/" exact to="/home" /> :
+                <Redirect from="/" exact to="/login" />
+              }
             </Switch>
           </div>
         </React.Fragment>

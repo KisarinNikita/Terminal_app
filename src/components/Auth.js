@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { register, login } from "../actions/authAction";
 import Button from '@material-ui/core/Button';
 import TextField from "@material-ui/core/TextField";
+import { Redirect } from "react-router-dom";
 
-class Registration extends Component {
+class Auth extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,10 +34,8 @@ class Registration extends Component {
         login: this.state.name,
         password: this.state.password
       };
-
       this.isRegistration ? this.props.register(data) : this.props.login(data);
     }
-
   }
 
   validation() {
@@ -51,6 +50,11 @@ class Registration extends Component {
   }
 
   render() {
+
+    const { isAuthenticated } = this.props;
+    if (isAuthenticated) {
+      return <Redirect to='/home'/>;
+    }
 
     return (
       <div className="content">
@@ -99,5 +103,5 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {register, login}
-)(Registration);
+)(Auth);
 

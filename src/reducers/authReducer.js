@@ -20,6 +20,12 @@ export default function auth(state = initialState, action) {
         ...state,
         isAuthenticated: false
       };
+    case "REFRESHED_TOKEN":
+      localStorage.setItem("token", action.payload.accessToken);
+      localStorage.setItem("refreshToken", action.payload.refreshToken);
+      return {
+        ...state
+      };
     case "LOGIN_SUCCESS":
     case "REGISTRATION_SUCCESS":
       localStorage.setItem("token", action.payload.accessToken);
@@ -27,6 +33,7 @@ export default function auth(state = initialState, action) {
       return {
         ...state,
         ...action.payload,
+        token: localStorage.getItem("token"),
         isAuthenticated: true,
         name: action.payload.name
       };
