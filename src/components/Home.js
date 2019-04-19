@@ -19,7 +19,9 @@ class Home extends Component {
     }
 
     if (refresh) {
-      this.props.refreshToken();
+        this.props.refreshToken();
+        this.props.getAllStocks();
+        this.props.getUserStocks();
     }
 
     const userStocks = stocks.map((k, index) =>
@@ -27,7 +29,7 @@ class Home extends Component {
            key={index}>
         <p>{k.name}</p>
         <p className="stock-item__price">{k.price.toFixed(2)} руб.</p>
-        <input className="stock-item__count" type="number" value={k.count}/>
+        <p className="stock-item__count">Кол-во: {k.count}</p>
         <button>Продать</button>
       </div>);
 
@@ -36,7 +38,6 @@ class Home extends Component {
            key={index}>
         <p>{k.name}</p>
         <p className="stock-item__price">{k.price.toFixed(2)} руб.</p>
-        <input className="stock-item__count" type="number" value={1}/>
         <button>Купить</button>
       </div>);
 
